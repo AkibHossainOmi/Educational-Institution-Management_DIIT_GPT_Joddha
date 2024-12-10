@@ -1,26 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../../components/Sidebar'; // Adjust the path based on your file structure
 
-const dummyCourses = [
-    { id: 1, name: 'Mathematics 101', description: 'Basic Mathematics', credits: 3 },
-    { id: 2, name: 'Physics 201', description: 'Intermediate Physics', credits: 4 },
-    { id: 3, name: 'Chemistry 101', description: 'Introduction to Chemistry', credits: 3 },
-];
-
 const ManageCourses = () => {
-    const [courses, setCourses] = useState(dummyCourses);
-    const [newCourse, setNewCourse] = useState({ name: '', description: '', credits: 0 });
+    const [courses, setCourses] = useState([]);
+    const [newCourse, setNewCourse] = useState({ name: '', description: '', credit: 0 });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    const addCourse = () => {
-        const id = courses.length + 1; // Generate a new ID
-        const updatedCourses = [...courses, { id, ...newCourse }];
-        setCourses(updatedCourses);
-        setNewCourse({ name: '', description: '', credits: 0 });
+    // Fetch courses on component mount
+    useEffect(() => {
+        fetchCourses();
+    }, []);
+
+    const fetchCourses = async () => {
+        setLoading(true);
+        setError('');
+        try {
+            const response = await fetch('http://localhost:8000/api/courses', {
+                method: 'GET',
+            });
+            if (!response.ok) throw new Error('Failed to fetch courses');
+            const data = await response.json();
+            setCourses(data);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const deleteCourse = (id) => {
-        const updatedCourses = courses.filter((course) => course.id !== id);
-        setCourses(updatedCourses);
+    const addCourse = async () => {
+        if (!newCourse.name || !newCourse.description || newCourse.credit <= 0) {
+            setError('All fields are required and credit must be greater than 0');
+            return;
+        }
+
+        setLoading(true);
+        setError('');
+        try {
+            const response = await fetch('http://localhost:8000/api/courses', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newCourse),
+            });
+            if (!response.ok) throw new Error('Failed to add course');
+            const addedCourse = await response.json();
+            setCourses([...courses, addedCourse]);
+            setNewCourse({ name: '', description: '', credit: 0 });
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const deleteCourse = async (id) => {
+        setLoading(true);
+        setError('');
+        try {
+            const response = await fetch(`http://localhost:8000/api/courses/${id}`, {
+                method: 'DELETE',
+            });
+            if (!response.ok) throw new Error('Failed to delete course');
+            setCourses(courses.filter((course) => course.id !== id));
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -28,6 +77,9 @@ const ManageCourses = () => {
             <Sidebar role="admin" />
             <div className="p-6 flex-1">
                 <h1 className="text-2xl font-bold mb-4">Manage Courses</h1>
+
+                {error && <p className="text-red-500 mb-4">{error}</p>}
+                {loading && <p>Loading...</p>}
 
                 <div className="mb-6">
                     <input
@@ -47,11 +99,15 @@ const ManageCourses = () => {
                     <input
                         type="number"
                         placeholder="Credits"
-                        value={newCourse.credits}
-                        onChange={(e) => setNewCourse({ ...newCourse, credits: e.target.value })}
+                        value={newCourse.credit}
+                        onChange={(e) => setNewCourse({ ...newCourse, credit: +e.target.value })}
                         className="border p-2 mr-2"
                     />
-                    <button onClick={addCourse} className="bg-blue-500 text-white p-2 rounded">
+                    <button
+                        onClick={addCourse}
+                        className="bg-blue-500 text-white p-2 rounded"
+                        disabled={loading}
+                    >
                         Add Course
                     </button>
                 </div>
@@ -70,11 +126,12 @@ const ManageCourses = () => {
                         <tr key={course.id}>
                             <td className="border px-4 py-2">{course.name}</td>
                             <td className="border px-4 py-2">{course.description}</td>
-                            <td className="border px-4 py-2">{course.credits}</td>
+                            <td className="border px-4 py-2">{course.credit}</td>
                             <td className="border px-4 py-2">
                                 <button
                                     onClick={() => deleteCourse(course.id)}
                                     className="bg-red-500 text-white p-2 rounded"
+                                    disabled={loading}
                                 >
                                     Delete
                                 </button>
