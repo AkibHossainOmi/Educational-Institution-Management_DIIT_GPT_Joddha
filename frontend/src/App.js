@@ -4,8 +4,8 @@ import Navbar from './components/Navbar';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import FacultyDashboard from './pages/FacultyDashboard';
 import StudentDashboard from './pages/student/StudentDashboard';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
+import Login from './pages/auth/Login';
+import SignUp from './pages/auth/SignUp';
 import ManageUsers from "./pages/admin/ManageUsers";
 import ManageCourses from "./pages/admin/ManageCourses";
 import StudentCourses from './pages/student/StudentCourses';
@@ -22,7 +22,8 @@ function App() {
         <div>
           <Navbar />
           <Routes>
-            <Route path="/" element={<AdminDashboard />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/faculty/dashboard" element={<FacultyDashboard />} />
