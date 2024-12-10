@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Sidebar from '../../components/Sidebar';
 
 const FacultyCourses = () => {
     // Sample courses data
@@ -39,45 +40,51 @@ const FacultyCourses = () => {
     };
 
     return (
-        <div className="p-6">
-            <h1 className="text-3xl font-bold mb-4">Faculty Courses</h1>
+        <div className="flex">
+            {/* Sidebar */}
+            <Sidebar role="faculty" />
             
-            {/* Search Bar */}
-            <div className="mb-6">
-                <input
-                    type="text"
-                    placeholder="Search for a course..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className="p-2 border rounded w-full"
-                />
-            </div>
+            {/* Main Content */}
+            <div className="flex-grow p-6">
+                <h1 className="text-3xl font-bold mb-4">Faculty Courses</h1>
+                
+                {/* Search Bar */}
+                <div className="mb-6">
+                    <input
+                        type="text"
+                        placeholder="Search for a course..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="p-2 border rounded w-full"
+                    />
+                </div>
 
-            {/* Courses List */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {filteredCourses.map((course) => (
-                    <div key={course.id} className="p-4 bg-gray-100 shadow rounded">
-                        <h2 className="text-xl font-bold mb-2">{course.name}</h2>
-                        <p className="text-gray-700 mb-2">{course.description}</p>
-                        <p className="text-gray-500 mb-4">{course.schedule}</p>
+                {/* Courses List */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {filteredCourses.map((course) => (
+                        <div key={course.id} className="p-4 bg-gray-100 shadow rounded">
+                            <h2 className="text-xl font-bold mb-2">{course.name}</h2>
+                            <p className="text-gray-700 mb-2">{course.description}</p>
+                            <p className="text-gray-500 mb-4">{course.schedule}</p>
 
-                        {/* Upload Materials */}
-                        <div className="flex items-center">
-                            <input
-                                type="file"
-                                id={`upload-${course.id}`}
-                                onChange={(e) => handleFileUpload(course.id, e)}
-                                className="hidden"
-                            />
-                            <label
-                                htmlFor={`upload-${course.id}`}
-                                className="cursor-pointer bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
-                            >
-                                Upload Materials
-                            </label>
+                            {/* Upload Materials */}
+                            <div className="flex items-center">
+                                <input
+                                    type="file"
+                                    id={`upload-${course.id}`}
+                                    onChange={(e) => handleFileUpload(course.id, e)}
+                                    className="hidden"
+                                />
+                                <label
+                                    htmlFor={`upload-${course.id}`}
+                                    className="cursor-pointer bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+                                >
+                                    Upload Materials
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     );

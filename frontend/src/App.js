@@ -24,6 +24,8 @@ import StudentProfile from "./pages/student/StudentProfile";
 
 import CourseMaterials from "./pages/student/CourseMaterials";
 import FacultyProfile from "./pages/faculty/FacultyProfile";
+import FacultyAttendance from "./pages/faculty/FacultyAttendance";
+import FacultyCourses from "./pages/faculty/FacultyCourses";
 
 const App = () => {
   return (
@@ -79,6 +81,8 @@ const App = () => {
                         <Route path="dashboard" element={<FacultyDashboard />} />
                         <Route path="profile" element={<FacultyProfile />} />
                         <Route path="course-materials" element={<CourseMaterials />} />
+                        <Route path="attendance" element={<FacultyAttendance />} />
+                        <Route path="courses" element={<FacultyCourses />} />
                       </Routes>
                     </ProtectedRoute>
                   }
