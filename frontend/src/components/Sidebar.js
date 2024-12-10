@@ -6,6 +6,8 @@ const Sidebar = ({ role }) => {
         admin: [
             { name: 'Dashboard', link: '/admin/dashboard' },
             { name: 'Manage Users', link: '/admin/users' },
+            { name: 'Manage Students', link: '/admin/manage-students' },
+            { name: 'Manage Faculty', link: '/admin/manage-faculty' },
             { name: 'Courses', link: '/admin/courses' },
         ],
         faculty: [
