@@ -79,10 +79,44 @@ async function deleteUser(req, res) {
   }
 }
 
+async function login(req, res) {
+  const { email, password } = req.body;
+
+  try {
+    // Find user by email
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check if password matches
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: user.id, name: user.name, role: user.role },
+      'your_jwt_secret_key', // Use a secure secret key (should be in an env variable)
+      { expiresIn: '1h' }
+    );
+
+    // Respond with token
+    res.status(200).json({
+      message: 'Login successful',
+      token,
+    });
+  } catch (error) {
+    handleError(res, error);
+  }
+}
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserById,
   updateUser,
   deleteUser,
+  login
 };
