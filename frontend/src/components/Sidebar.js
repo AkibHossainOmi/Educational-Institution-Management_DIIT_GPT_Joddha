@@ -15,11 +15,14 @@ const Sidebar = ({ role }) => {
         ],
         student: [
             { name: 'Dashboard', link: '/student/dashboard' },
+            { name: 'Profile', link: '/student/profile' },
             { name: 'Courses', link: '/student/enroll' },
             { name: 'My Courses', link: '/student/courses' },
+            { name: 'Course Materials', link: '/student/course-materials' },
             { name: 'Schedule', link: '/student/schedule' },
             { name: 'Grades', link: '/student/grades' },
             { name: 'Attendance', link: '/student/attendance' },
+            
         ],
     };
 

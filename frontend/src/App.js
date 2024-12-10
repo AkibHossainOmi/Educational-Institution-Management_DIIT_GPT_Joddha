@@ -13,6 +13,8 @@ import StudentGrades from './pages/student/StudentGrades';
 import StudentEnrollCourses from './pages/student/StudentEnrollCourses';
 import StudentSchedule from './pages/student/StudentSchedule';
 import StudentAttendance from './pages/student/StudentAttendance';
+import StudentProfile from './pages/student/StudentProfile';
+import CourseMaterials from './pages/student/CourseMaterials';
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
               <Route path="/student/enroll" element={<StudentEnrollCourses />} />
               <Route path="/student/schedule" element={<StudentSchedule />} /> 
               <Route path="/student/attendance" element={<StudentAttendance />} />
+              <Route path="/student/profile" element={<StudentProfile />} /> 
+              <Route path="/student/course-materials" element={<CourseMaterials />} />
           </Routes>
         </div>
       </Router>
