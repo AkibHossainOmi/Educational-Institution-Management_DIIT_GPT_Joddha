@@ -1,6 +1,6 @@
 # Educational Institution Management System
 
-This project is a comprehensive **Educational Institution Management System** developed to streamline and manage institutional operations efficiently. It was designed as part of the Tejgaon College Hackathon by **Team GPT Joddha**.
+This project is a comprehensive **Educational Institution Management System** developed to streamline and manage institutional operations efficiently. It was designed as part of the Tejgaon College Hackathon by **DIIT_GPT_Joddha**.
 
 ---
 
@@ -38,19 +38,4 @@ The system provides a platform to manage student records, courses, faculty detai
 5. **Authentication**: Secure login system for different user roles (Admin, Faculty, Student).  
 6. **Responsive Design**: User-friendly interface for desktop and mobile devices.  
 
----
 
-## Setup Instructions
-
-Follow these steps to run the project locally:
-
-### Prerequisites
-- **Node.js**: Ensure Node.js is installed on your system.  
-- **MySQL**: Set up a local server.  
-- **Git**: Version control system installed.  
-
-### Installation
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/AkibHossainOmi/Educational-Institution-Management_DIIT_GPT_Joddha.git
-   cd Educational-Institution-Management_DIIT_GPT_Joddha
