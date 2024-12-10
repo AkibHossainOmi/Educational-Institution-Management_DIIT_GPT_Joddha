@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import FacultyDashboard from './pages/FacultyDashboard';
+import FacultyDashboard from './pages/faculty/FacultyDashboard';
 import StudentDashboard from './pages/student/StudentDashboard';
 import Login from './pages/auth/Login';
 import SignUp from './pages/auth/SignUp';
@@ -15,6 +15,7 @@ import StudentSchedule from './pages/student/StudentSchedule';
 import StudentAttendance from './pages/student/StudentAttendance';
 import StudentProfile from './pages/student/StudentProfile';
 import CourseMaterials from './pages/student/CourseMaterials';
+import FacultyProfile from './pages/faculty/FacultyProfile';
 
 function App() {
   return (
@@ -37,6 +38,8 @@ function App() {
               <Route path="/student/attendance" element={<StudentAttendance />} />
               <Route path="/student/profile" element={<StudentProfile />} /> 
               <Route path="/student/course-materials" element={<CourseMaterials />} />
+              <Route path="/faculty/profile" element={<FacultyProfile />} />
+
           </Routes>
         </div>
       </Router>
