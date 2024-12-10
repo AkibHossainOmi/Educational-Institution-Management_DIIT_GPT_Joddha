@@ -10,8 +10,12 @@ const Sidebar = ({ role }) => {
         ],
         faculty: [
             { name: 'Dashboard', link: '/faculty/dashboard' },
+            { name: 'Profile', link: '/faculty/profile' },
             { name: 'My Courses', link: '/faculty/courses' },
             { name: 'Attendance', link: '/faculty/attendance' },
+            
+            
+            
         ],
         student: [
             { name: 'Dashboard', link: '/student/dashboard' },
