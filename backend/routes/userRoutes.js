@@ -13,11 +13,11 @@ const {
 const router = express.Router();
 
 
-router.post('/users', createUser);
-router.get('/users', authenticate, getAllUsers); 
-router.get('/users/:id', authenticate, getUserById); 
-router.put('/users/:id', authenticate, updateUser); 
-router.delete('/users/:id', authenticate, deleteUser); 
+router.post('/', createUser);
+router.get('/', authenticate, getAllUsers); 
+router.get('/:id', authenticate, getUserById); 
+router.put('/:id', authenticate, updateUser); 
+router.delete('/:id', authenticate, deleteUser); 
 router.post('/login', login);
 console.log(require.resolve('../middleware/authMiddleware'));
 
