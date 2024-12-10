@@ -12,28 +12,24 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            // Make the login API request using the api utility
             const response = await login(email, password);
-
-            // Handle success
             if (response.token) {
                 const token = response.token;
-                const decodedToken = jwtDecode(token); // Decode the token to extract user role
+                const decodedToken = jwtDecode(token);
 
-                // Store token and user info in localStorage
                 localStorage.setItem("token", token);
                 localStorage.setItem("user", JSON.stringify(decodedToken));
 
-                // Check the role and redirect accordingly
+
                 if (decodedToken.role === "admin") {
-                    window.location.href = "/admin/dashboard"; // Redirect to admin dashboard
+                    window.location.href = "/admin/dashboard";
                 } else if (decodedToken.role === "student") {
-                    window.location.href = "/student/dashboard"; // Redirect to student dashboard
+                    window.location.href = "/student/dashboard";
                 } else if (decodedToken.role === "faculty") {
-                    window.location.href = "/faculty/dashboard"; // Redirect to faculty dashboard
+                    window.location.href = "/faculty/dashboard";
                 } else {
-                    // Redirect to a default page if the role doesn't match
-                    window.location.href = "/"; // Or a page like /home or /dashboard
+
+                    window.location.href = "/";
                 }
             } else {
                 setError("Login failed, please try again.");
