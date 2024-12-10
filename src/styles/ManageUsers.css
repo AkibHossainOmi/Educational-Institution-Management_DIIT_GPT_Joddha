@@ -1,0 +1,185 @@
+/* Centering the content in the container */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 900px;
+    margin-top: 50px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto; /* Center the content horizontally */
+}
+
+/* Styling for the modal */
+.modal-dialog-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Title Styling */
+h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Button Styling */
+.btn {
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Primary button for adding user */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Modal styling */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ccc;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+}
+
+/* Form styling */
+input[type="text"], input[type="email"], select {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Table Styling */
+.table {
+    margin-top: 30px;
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 1.1rem;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.table tbody tr:hover {
+    background-color: #f7f7f7;
+}
+
+.table .btn {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.table .btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.table .btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.table .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.table .btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .table th, .table td {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .modal-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* Styling for Modal Body Background */
+.modal-body {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+/* Styling the Modal Footer Background */
+.modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    justify-content: flex-end;
+}
+
+/* Form label and input enhancements */
+.form-label {
+    font-size: 1rem;
+    color: #333;
+}
+
+input[type="text"], input[type="email"], select {
+    font-size: 1rem;
+    padding: 12px;
+}
+
+/* Buttons in modal footer */
+.modal-footer .btn {
+    width: 120px;
+}
+
+/* Hover effects for buttons */
+.btn:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
