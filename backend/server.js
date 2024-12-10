@@ -1,18 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const userRoutes = require('./routes/userRoutes'); // Import the user routes
-const sequelize = require('./config/database'); // Import the database config
-
+const userRoutes = require('./routes/userRoutes'); 
+const sequelize = require('./config/database'); 
+const cors = require('cors'); 
 const app = express();
 const port = 8000;
 
-// Middleware
-app.use(bodyParser.json()); // To parse JSON request bodies
+app.use(cors());
 
-// Routes
+
+app.use(bodyParser.json()); 
+
+
 app.use('/api', userRoutes);
 
-// Sync the database and start the server
+
 sequelize.sync()
   .then(() => {
     app.listen(port, () => {
