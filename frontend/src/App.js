@@ -10,6 +10,9 @@ import ManageUsers from "./pages/admin/ManageUsers";
 import ManageCourses from "./pages/admin/ManageCourses";
 import StudentCourses from './pages/student/StudentCourses';
 import StudentGrades from './pages/student/StudentGrades';
+import StudentEnrollCourses from './pages/student/StudentEnrollCourses';
+import StudentSchedule from './pages/student/StudentSchedule';
+import StudentAttendance from './pages/student/StudentAttendance';
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
               <Route path="/admin/courses" element={<ManageCourses />} />
               <Route path="/student/courses" element={<StudentCourses />} />
               <Route path="/student/grades" element={<StudentGrades />} />
+              <Route path="/student/enroll" element={<StudentEnrollCourses />} />
+              <Route path="/student/schedule" element={<StudentSchedule />} /> 
+              <Route path="/student/attendance" element={<StudentAttendance />} />
           </Routes>
         </div>
       </Router>
