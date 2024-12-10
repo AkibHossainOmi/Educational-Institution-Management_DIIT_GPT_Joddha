@@ -24,19 +24,7 @@ const ManageUsers = () => {
     const [newFaculty, setNewFaculty] = useState({ name: '', email: '' });
     const [facultyAssignment, setFacultyAssignment] = useState({ facultyId: '', courseId: '' });
 
-    const addStudent = () => {
-        const id = students.length + 1; // Generate new ID
-        const updatedStudents = [...students, { id, ...newStudent }];
-        setStudents(updatedStudents);
-        setNewStudent({ name: '', email: '' });
-    };
 
-    const addFaculty = () => {
-        const id = faculty.length + 1; // Generate new ID
-        const updatedFaculty = [...faculty, { id, ...newFaculty }];
-        setFaculty(updatedFaculty);
-        setNewFaculty({ name: '', email: '' });
-    };
 
     const deleteStudent = (id) => {
         const updatedStudents = students.filter((student) => student.id !== id);
@@ -60,49 +48,7 @@ const ManageUsers = () => {
             <div className="p-6 flex-1">
                 <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
 
-                {/* Add Student */}
-                <div className="mb-6">
-                    <h2 className="text-xl font-semibold">Add Student</h2>
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        value={newStudent.name}
-                        onChange={(e) => setNewStudent({ ...newStudent, name: e.target.value })}
-                        className="border p-2 mr-2"
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={newStudent.email}
-                        onChange={(e) => setNewStudent({ ...newStudent, email: e.target.value })}
-                        className="border p-2 mr-2"
-                    />
-                    <button onClick={addStudent} className="bg-blue-500 text-white p-2 rounded">
-                        Add Student
-                    </button>
-                </div>
 
-                {/* Add Faculty */}
-                <div className="mb-6">
-                    <h2 className="text-xl font-semibold">Add Faculty</h2>
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        value={newFaculty.name}
-                        onChange={(e) => setNewFaculty({ ...newFaculty, name: e.target.value })}
-                        className="border p-2 mr-2"
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={newFaculty.email}
-                        onChange={(e) => setNewFaculty({ ...newFaculty, email: e.target.value })}
-                        className="border p-2 mr-2"
-                    />
-                    <button onClick={addFaculty} className="bg-blue-500 text-white p-2 rounded">
-                        Add Faculty
-                    </button>
-                </div>
 
                 {/* Faculty Assignment */}
                 <div className="mb-6">

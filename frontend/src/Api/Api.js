@@ -1,9 +1,8 @@
 import axios from "axios";
 
-// Base URL for your API
-const BASE_URL = "http://localhost:8000/api/"; // Replace with your actual base API URL
 
-// Utility to get the JWT token from localStorage (or cookies if you prefer)
+const BASE_URL = "http://localhost:8000/api/users";
+
 const getAuthToken = () => {
     return localStorage.getItem("token"); // You can also use cookies here
 };
