@@ -1,23 +1,53 @@
 import React, { useState } from "react";
+import { login } from "../../Api/Api"; // Import the login function from api.js
+import { jwtDecode } from 'jwt-decode';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
+    const [error, setError] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic (e.g., authentication request)
-        console.log("Email:", email);
-        console.log("Password:", password);
-        console.log("Remember me:", rememberMe);
+
+        try {
+            // Make the login API request using the api utility
+            const response = await login(email, password);
+
+            // Handle success
+            if (response.token) {
+                const token = response.token;
+                const decodedToken = jwtDecode(token); // Decode the token to extract user role
+
+                // Store token and user info in localStorage
+                localStorage.setItem("token", token);
+                localStorage.setItem("user", JSON.stringify(decodedToken));
+
+                // Check the role and redirect accordingly
+                if (decodedToken.role === "admin") {
+                    window.location.href = "/admin/dashboard"; // Redirect to admin dashboard
+                } else if (decodedToken.role === "student") {
+                    window.location.href = "/student/dashboard"; // Redirect to student dashboard
+                } else if (decodedToken.role === "faculty") {
+                    window.location.href = "/faculty/dashboard"; // Redirect to faculty dashboard
+                } else {
+                    // Redirect to a default page if the role doesn't match
+                    window.location.href = "/"; // Or a page like /home or /dashboard
+                }
+            } else {
+                setError("Login failed, please try again.");
+            }
+        } catch (err) {
+            console.error("Login error:", err);
+            setError("An error occurred during login.");
+        }
     };
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-                    {/*<img className="w-8 h-8 mr-2" src="" alt="logo" />*/}
                     Educational-Institution-Management
                 </a>
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -25,6 +55,13 @@ const Login = () => {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Sign in to your account
                         </h1>
+
+                        {error && (
+                            <div className="text-red-500 mb-4">
+                                {error}
+                            </div>
+                        )}
+
                         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
